@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="location">%1$s, %2$s</string>
+    <string name="temperature">%1$s \u2103</string>
+    <string name="pressure">%1$s hpa</string>
+    <string name="humidity">%1$s %%</string>
+    <string name="wind">%1$s m/s</string>
+    <string name="format">%1$tb %1$td, %1$tY</string>
+    <string name="formatter_date">Last Updated on %1$tb %1$td, %1$tY At %1$tH:%1$tM</string>
+    <string name="formatter_time">%1$tH:%1$tM</string>
+    <string name="formatter_time_sunrise">Sunrise: %1$tH:%1$tM</string>
+    <string name="formatter_time_sunset">Sunset: %1$tH:%1$tM</string>
 </resources>

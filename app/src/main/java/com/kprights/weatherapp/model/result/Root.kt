@@ -13,7 +13,7 @@ data class Root (
 		@SerializedName("visibility") var visibility : Int = 0,
 		@SerializedName("wind") var wind : Wind = Wind(),
 		@SerializedName("clouds") var clouds : Clouds = Clouds(),
-		@SerializedName("dt") var dt : Int = 0,
+		@SerializedName("dt") var dt : Long = 0L,
 		@SerializedName("sys") var sys : Sys = Sys(),
 		@SerializedName("timezone") var timezone : Int = 0,
 		@SerializedName("id") var id : Int = 0,

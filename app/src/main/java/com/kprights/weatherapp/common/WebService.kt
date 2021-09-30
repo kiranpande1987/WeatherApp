@@ -31,6 +31,6 @@ val WebService: Api by lazy { retrofit.create(Api::class.java) }
 
 interface Api
 {
-    @GET("data/2.5/weather")
+    @GET("data/2.5/weather?units=metric")
     fun getWeatherByCityName(@Query("q") q: String = "London", @Query("appid") appid: String = API_KEY): Deferred<Root>
 }
