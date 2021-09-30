@@ -12,4 +12,7 @@
     <string name="formatter_time_sunset">Sunset: %1$tH:%1$tM</string>
     <string name="forecast_format">%1$ta\n%2$.0f \u2103</string>
     <string name="next_5_days">Next 5 Days</string>
+
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>
