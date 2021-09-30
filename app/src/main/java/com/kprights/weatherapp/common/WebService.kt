@@ -2,10 +2,10 @@ package com.kprights.weatherapp.common
 
 import com.kprights.weatherapp.model.result.Root
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.kprights.weatherapp.model.forecast.Base
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -33,4 +33,8 @@ interface Api
 {
     @GET("data/2.5/weather?units=metric")
     fun getWeatherByCityName(@Query("q") q: String = "London", @Query("appid") appid: String = API_KEY): Deferred<Root>
+
+
+    @GET("data/2.5/forecast?units=metric")
+    fun getForecarstForFiveDaysByCity(@Query("q") q: String = "London", @Query("appid") appid: String = API_KEY): Deferred<Base>
 }

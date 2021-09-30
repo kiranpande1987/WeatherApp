@@ -1,6 +1,7 @@
 package com.kprights.weatherapp.viewmodel
 
 import androidx.lifecycle.LiveData
+import com.kprights.weatherapp.model.forecast.Base
 import com.kprights.weatherapp.model.result.Root
 
 
@@ -14,5 +15,7 @@ import com.kprights.weatherapp.model.result.Root
 
 interface IDataSource {
     suspend fun getCityWeatherFromRemote(cityName: String): Root
+    suspend fun getForecastForFiveDaysByCityFromRemote(cityName: String): Base
+
     fun getCityWeatherFromLocal(): LiveData<Root>
 }

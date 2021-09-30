@@ -1,10 +1,9 @@
 package com.kprights.weatherapp.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.kprights.weatherapp.common.WebService
+import com.kprights.weatherapp.model.forecast.Base
 import com.kprights.weatherapp.model.result.Root
-import timber.log.Timber
 
 
 /**
@@ -19,8 +18,12 @@ class RemoteDataSource: IDataSource {
 
     override suspend fun getCityWeatherFromRemote(cityName: String): Root {
         val deferred = WebService.getWeatherByCityName(cityName)
-        val root = deferred.await()
-        return root
+        return deferred.await()
+    }
+
+    override suspend fun getForecastForFiveDaysByCityFromRemote(cityName: String): Base {
+        val deferred = WebService.getForecarstForFiveDaysByCity(cityName)
+        return deferred.await()
     }
 
     override fun getCityWeatherFromLocal(): LiveData<Root> {

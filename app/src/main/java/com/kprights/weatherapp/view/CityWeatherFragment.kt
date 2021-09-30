@@ -30,8 +30,6 @@ class CityWeatherFragment: Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
-
-
         val remoteDataSource = RemoteDataSource()
 
         val cityWeatherRepository = CityWeatherRepository(
@@ -46,6 +44,14 @@ class CityWeatherFragment: Fragment() {
             Log.e("CITTYYY 2", "${it.toString()}")
 
             binding.cityWeather = it
+
+        })
+
+        model.base.observe(viewLifecycleOwner, Observer {
+            Log.e("CITTYYY 1", "OBserver called")
+            Log.e("CITTYYY 2", "${it.toString()}")
+
+            binding.forecast = it
 
         })
 

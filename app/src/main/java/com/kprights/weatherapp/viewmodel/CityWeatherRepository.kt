@@ -3,6 +3,7 @@ package com.kprights.weatherapp.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.kprights.weatherapp.model.forecast.Base
 import com.kprights.weatherapp.model.result.Root
 import kotlinx.coroutines.*
 
@@ -26,6 +27,7 @@ class CityWeatherRepository(
     private val scope = CoroutineScope(job + ioDispatcher)
 
     var roots: MutableLiveData<Root> = MutableLiveData<Root>()
+    var bases: MutableLiveData<Base> = MutableLiveData<Base>()
     val status: MutableLiveData<ApiStatus> = MutableLiveData<ApiStatus>()
 
     init {
@@ -40,12 +42,16 @@ class CityWeatherRepository(
         scope.launch(ioDispatcher) {
 
             val root = fetchDataFromRemote(cityName)
+            val base = fetchForecastDataFromRemote(cityName)
 
             root?.let {
-                deleteDataFromDatabase()
-                insertDataIntoDatabase(it)
                 status.postValue(ApiStatus.DONE)
                 roots.postValue(root)
+            }
+
+            base?.let {
+                status.postValue(ApiStatus.DONE)
+                bases.postValue(base)
             }
         }
     }
@@ -61,19 +67,15 @@ class CityWeatherRepository(
         return null
     }
 
-    private suspend fun deleteDataFromDatabase()
-    {
-        withContext(ioDispatcher)
-        {
-
+    private suspend fun fetchForecastDataFromRemote(cityName: String): Base? {
+        try {
+            status.postValue(ApiStatus.LOADING)
+            return remoteDataSource.getForecastForFiveDaysByCityFromRemote(cityName)
+        } catch (e: Exception) {
+            status.postValue(ApiStatus.ERROR)
         }
-    }
 
-    private suspend fun insertDataIntoDatabase(root: Root) {
-        withContext(ioDispatcher)
-        {
-
-        }
+        return null
     }
 
     fun cancel() {

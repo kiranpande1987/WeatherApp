@@ -7,6 +7,10 @@
         <variable
             name="cityWeather"
             type="com.kprights.weatherapp.model.result.Root" />
+
+        <variable
+            name="forecast"
+            type="com.kprights.weatherapp.model.forecast.Base" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,6 +41,34 @@
             app:showImage="@{cityWeather.weather.get(0).icon}"
             app:layout_constraintTop_toBottomOf="@id/location"
             app:srcCompat="@android:drawable/stat_notify_error" />
+
+        <TextView
+            android:id="@+id/sunrise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:textSize="15sp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@{@string/formatter_time_sunrise(cityWeather.sys.sunrise * 1000)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location" />
+
+        <TextView
+            android:id="@+id/sunset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp"
+            android:text="@{@string/formatter_time_sunset(cityWeather.sys.sunset * 1000)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location" />
 
         <TextView
             android:id="@+id/description"
@@ -105,6 +137,78 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/nextFiveDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:text="@string/next_5_days"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/otherWeatherDetails"/>
+
+        <LinearLayout
+            android:id="@+id/cityForecast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nextFiveDays"
+            android:weightSum="5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@{@string/forecast_format(forecast.list.get(0).dt * 1000, forecast.list.get(0).main.temp).toUpperCase()}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@{@string/forecast_format(forecast.list.get(8).dt * 1000, forecast.list.get(8).main.temp).toUpperCase()}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@{@string/forecast_format(forecast.list.get(16).dt * 1000, forecast.list.get(16).main.temp).toUpperCase()}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@{@string/forecast_format(forecast.list.get(24).dt * 1000, forecast.list.get(24).main.temp).toUpperCase()}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@{@string/forecast_format(forecast.list.get(32).dt * 1000, forecast.list.get(32).main.temp).toUpperCase()}"/>
+
+        </LinearLayout>
+
+        <TextView
             android:id="@+id/lastUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -116,35 +220,8 @@
             android:text="@{@string/formatter_date(cityWeather.dt * 1000)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/otherWeatherDetails" />
-
-        <TextView
-            android:id="@+id/sunrise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:textSize="15sp"
-            android:layout_marginStart="8dp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="@{@string/formatter_time_sunrise(cityWeather.sys.sunrise * 1000)}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/location" />
-
-        <TextView
-            android:id="@+id/sunset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:textSize="15sp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginEnd="8dp"
-            android:text="@{@string/formatter_time_sunset(cityWeather.sys.sunset * 1000)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/location" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
