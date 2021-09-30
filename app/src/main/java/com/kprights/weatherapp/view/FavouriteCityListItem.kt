@@ -18,6 +18,8 @@ import com.kprights.weatherapp.databinding.FavouriteCityListItemBinding
 class FavouriteCityListItem(private val binding: FavouriteCityListItemBinding) : RecyclerView.ViewHolder(binding.root)
 {
     fun bind(item: String, onClickListener: FavouriteCityListAdapter.OnClickListener) {
+        binding.cityName = item
+        binding.onClickListener = onClickListener
         binding.executePendingBindings()
     }
 

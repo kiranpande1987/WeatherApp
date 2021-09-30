@@ -18,6 +18,23 @@
         android:layout_height="match_parent"
         android:background="#03A9F4">
 
+        <EditText
+            android:id="@+id/searchCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textAutoComplete"
+            android:imeOptions="actionSearch"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:background="@drawable/round_corner_edit_text"
+            android:drawableEnd="@android:drawable/ic_menu_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <TextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
@@ -29,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/searchCity" />
 
         <ImageView
             android:id="@+id/weatherIcon"
@@ -49,7 +66,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchCity"
             android:src="@drawable/ic_add_fav"
             app:srcCompat="@android:drawable/stat_notify_error" />
 

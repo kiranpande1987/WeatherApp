@@ -18,8 +18,8 @@ class FavouriteCityListAdapter(val onClickListener: OnClickListener): ListAdapte
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FavouriteCityListItem.from(parent)
 
     override fun onBindViewHolder(holder: FavouriteCityListItem, position: Int) {
-        val news = getItem(position)
-        holder.bind(news, onClickListener)
+        val cityName = getItem(position)
+        holder.bind(cityName, onClickListener)
     }
 
     class NewsFeedDiffCallback: DiffUtil.ItemCallback<String>() {

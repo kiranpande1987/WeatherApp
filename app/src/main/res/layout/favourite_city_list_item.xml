@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="cityName"
+            type="String" />
+
+        <variable
+            name="onClickListener"
+            type="com.kprights.weatherapp.view.FavouriteCityListAdapter.OnClickListener" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:background="@drawable/round_corner_list_item"
         android:padding="10dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onClickListener.onClick(cityName)}">
 
         <TextView
             android:id="@+id/temperature"
@@ -24,7 +36,7 @@
             android:layout_marginStart="8dp"
             android:textSize="16sp"
             android:textColor="@color/white"
-            android:text="London, GB\nClouds"
+            android:text="@{cityName}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/temperature"/>
 
