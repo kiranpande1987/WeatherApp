@@ -11,6 +11,10 @@
         <variable
             name="forecast"
             type="com.kprights.weatherapp.model.forecast.Base" />
+
+        <variable
+            name="apiStatus"
+            type="com.kprights.weatherapp.viewmodel.ApiStatus" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -254,6 +258,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="10dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            apiStatus="@{apiStatus}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

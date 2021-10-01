@@ -10,6 +10,10 @@
         <variable
             name="onClickListener"
             type="com.kprights.weatherapp.view.FavouriteCityListAdapter.OnClickListener" />
+
+        <variable
+            name="cityWeather"
+            type="com.kprights.weatherapp.model.result.Root" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +29,7 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textColor="@color/white"
-            android:text="30C"
+            android:text="@{@string/temperature(cityWeather.main.temp)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -36,7 +40,7 @@
             android:layout_marginStart="8dp"
             android:textSize="16sp"
             android:textColor="@color/white"
-            android:text="@{cityName}"
+            android:text="@{@string/favourite_list_item(cityName,cityWeather.weather.get(0).description.toUpperCase())}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/temperature"/>
 

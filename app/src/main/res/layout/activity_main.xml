@@ -20,12 +20,23 @@
     android:layout_height="match_parent"
     android:layout_gravity="start">
 
+    <TextView
+        android:id="@+id/txtNoFavCities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="@string/no_favourite_cities"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listOfFavCities"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="10"
+        android:visibility="gone"
         tools:listitem="@layout/favourite_city_list_item" />
 
 </com.google.android.material.navigation.NavigationView>

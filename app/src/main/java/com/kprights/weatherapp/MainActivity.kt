@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -19,7 +21,9 @@ import com.kprights.weatherapp.view.FavouriteCityListAdapter
 class MainActivity : AppCompatActivity() {
     var drawerLayout: DrawerLayout? = null
     var actionBarDrawerToggle: ActionBarDrawerToggle? = null
-    var adapter: FavouriteCityListAdapter? = null
+    private var adapter: FavouriteCityListAdapter? = null
+    private lateinit var listViewFavCities: RecyclerView
+    private lateinit var txtNoFavCities: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +44,9 @@ class MainActivity : AppCompatActivity() {
             drawerLayout?.closeDrawers()
         })
 
-        val listView = findViewById<RecyclerView>(R.id.listOfFavCities)
-        listView.adapter = adapter
+        listViewFavCities = findViewById(R.id.listOfFavCities)
+        txtNoFavCities = findViewById(R.id.txtNoFavCities)
+        listViewFavCities.adapter = adapter
     }
 
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
@@ -50,7 +55,16 @@ class MainActivity : AppCompatActivity() {
             val currentFavCities = sharedPref?.getString("FavouriteCities", null)
             val cities = currentFavCities?.split(":")
 
-            adapter?.submitList(cities)
+            if(cities.isNullOrEmpty()){
+                listViewFavCities.visibility = View.GONE
+                txtNoFavCities.visibility = View.VISIBLE
+            }
+            else{
+                listViewFavCities.visibility = View.VISIBLE
+                txtNoFavCities.visibility = View.GONE
+                adapter?.submitList(cities)
+            }
+
             true
         } else super.onOptionsItemSelected(item)
     }

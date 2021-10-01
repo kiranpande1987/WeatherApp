@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kprights.weatherapp.R
 import com.kprights.weatherapp.databinding.FragmentCityWeatherBinding
+import com.kprights.weatherapp.viewmodel.ApiStatus
 import com.kprights.weatherapp.viewmodel.CityWeatherRepository
 import com.kprights.weatherapp.viewmodel.CityWeatherViewModel
 import com.kprights.weatherapp.viewmodel.RemoteDataSource
@@ -38,14 +40,12 @@ class CityWeatherFragment: Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
-        val remoteDataSource = RemoteDataSource()
+        model = CityWeatherViewModel()
 
-        val cityWeatherRepository = CityWeatherRepository(
-                remoteDataSource = remoteDataSource,
-                ioDispatcher = Dispatchers.Main
-        )
-
-        model = CityWeatherViewModel(cityWeatherRepository)
+        model.status.observe(viewLifecycleOwner, Observer {
+            binding.apiStatus = it
+            if(it == ApiStatus.ERROR) Toast.makeText(context, "No City Found", Toast.LENGTH_SHORT).show()
+        })
 
         model.root.observe(viewLifecycleOwner, Observer {
             Log.e("CITTYYY 1", "OBserver called")

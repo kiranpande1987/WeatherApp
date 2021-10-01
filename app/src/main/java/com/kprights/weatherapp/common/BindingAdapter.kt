@@ -1,6 +1,7 @@
 package com.kprights.weatherapp.common
 
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kprights.weatherapp.R
 import com.kprights.weatherapp.view.CityListAdapter
+import com.kprights.weatherapp.viewmodel.ApiStatus
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,9 +42,27 @@ fun showImage(imageViewForNewsFeed: ImageView, icon: String?) {
                 .load(imgUri)
                 .apply(
                         RequestOptions()
-                                .placeholder(android.R.drawable.stat_sys_download)
+                                .placeholder(R.drawable.loading_img)
                                 .error(android.R.drawable.stat_notify_error)
                 )
                 .into(imageViewForNewsFeed)
+    }
+}
+
+@BindingAdapter("apiStatus")
+fun bindStatus(statusImageView: ImageView, status: ApiStatus?) {
+    when (status) {
+        ApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_animation)
+        }
+
+        ApiStatus.ERROR -> {
+            statusImageView.visibility = View.GONE
+        }
+
+        ApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
     }
 }

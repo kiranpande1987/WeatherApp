@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WeatherApp</string>
     <string name="location">%1$s, %2$s</string>
-    <string name="temperature">%1$.0f \u2103</string>
+    <string name="temperature">%1$.0f\u2103</string>
     <string name="pressure">%1$s hpa</string>
     <string name="humidity">%1$s %%</string>
     <string name="wind">%1$s m/s</string>
@@ -12,7 +12,8 @@
     <string name="formatter_time_sunset">Sunset: %1$tH:%1$tM</string>
     <string name="forecast_format">%1$ta\n%2$.0f \u2103</string>
     <string name="next_5_days">Next 5 Days</string>
-
+    <string name="favourite_list_item">%1$s\n%2$s</string>
+    <string name="no_favourite_cities">No Favourite Cities</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
 </resources>
