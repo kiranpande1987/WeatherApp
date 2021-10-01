@@ -1,3 +1,2 @@
-# Project Name
-
-Write something later
+# WeatherApp
+## Android App To Search Weather By City Name.
