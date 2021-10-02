@@ -19,20 +19,20 @@ import com.kprights.weatherapp.viewmodel.ApiStatus
  */
 
 @BindingAdapter("showImage")
-fun showImage(imageViewForNewsFeed: ImageView, icon: String?) {
+fun showImage(imageView: ImageView, icon: String?) {
     val imageUrl = "http://openweathermap.org/img/wn/${icon}@4x.png"
 
     imageUrl.let {
         val imgUri = imageUrl.toUri().buildUpon().scheme("http").build()
 
-        Glide.with(imageViewForNewsFeed.context)
+        Glide.with(imageView.context)
                 .load(imgUri)
                 .apply(
                         RequestOptions()
                                 .placeholder(R.drawable.loading_img)
                                 .error(android.R.drawable.stat_notify_error)
                 )
-                .into(imageViewForNewsFeed)
+                .into(imageView)
     }
 }
 

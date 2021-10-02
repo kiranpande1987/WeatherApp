@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ListAdapter
  * Time : 8:29 PM
  */
 
-class FavouriteCityListAdapter(val onClickListener: OnClickListener): ListAdapter<String, FavouriteCityListItem>(NewsFeedDiffCallback())  //: RecyclerView.Adapter<NewsFeedListItem>()
+class FavouriteCityListAdapter(private val onClickListener: OnClickListener): ListAdapter<String, FavouriteCityListItem>(DiffCallback())
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FavouriteCityListItem.from(parent)
 
@@ -21,7 +21,7 @@ class FavouriteCityListAdapter(val onClickListener: OnClickListener): ListAdapte
         holder.bind(cityName, onClickListener)
     }
 
-    class NewsFeedDiffCallback: DiffUtil.ItemCallback<String>() {
+    class DiffCallback: DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }

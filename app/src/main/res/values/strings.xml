@@ -16,4 +16,5 @@
     <string name="no_favourite_cities">No Favourite Cities</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <string name="no_city_found">No City Found</string>
 </resources>

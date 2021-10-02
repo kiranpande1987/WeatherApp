@@ -10,6 +10,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.kprights.weatherapp.common.DELIMITER
+import com.kprights.weatherapp.common.SHARED_PREFERENCE_FAV_CITY_KEY_NAME
 import com.kprights.weatherapp.view.CityWeatherFragment
 import com.kprights.weatherapp.view.FavouriteCityListAdapter
 
@@ -47,8 +49,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(@NonNull item: MenuItem): Boolean {
         return if (actionBarDrawerToggle!!.onOptionsItemSelected(item)) {
             val sharedPref = getPreferences(Context.MODE_PRIVATE)
-            val currentFavCities = sharedPref?.getString("FavouriteCities", null)
-            val cities = currentFavCities?.split(":")
+            val currentFavCities = sharedPref?.getString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, null)
+            val cities = currentFavCities?.split(DELIMITER)
 
             if(cities.isNullOrEmpty()){
                 listViewFavCities.visibility = View.GONE

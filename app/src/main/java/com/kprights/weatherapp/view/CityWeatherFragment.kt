@@ -11,6 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kprights.weatherapp.R
+import com.kprights.weatherapp.common.CONTENT_DESCRIPTION_ADD_FAVOURITE
+import com.kprights.weatherapp.common.EMPTY_STRING
+import com.kprights.weatherapp.common.SHARED_PREFERENCE_FAV_CITY_KEY_NAME
 import com.kprights.weatherapp.databinding.FragmentCityWeatherBinding
 import com.kprights.weatherapp.viewmodel.ApiStatus
 import com.kprights.weatherapp.viewmodel.CityWeatherViewModel
@@ -31,71 +34,70 @@ class CityWeatherFragment: Fragment() {
                               savedInstanceState: Bundle?): View? {
         binding = FragmentCityWeatherBinding.inflate(inflater)
 
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
         model = CityWeatherViewModel()
 
         model.status.observe(viewLifecycleOwner, Observer {
             binding.apiStatus = it
-            if(it == ApiStatus.ERROR) Toast.makeText(context, "No City Found", Toast.LENGTH_SHORT).show()
+            if(it == ApiStatus.ERROR) Toast.makeText(context, R.string.no_city_found, Toast.LENGTH_SHORT).show()
         })
 
         model.base.observe(viewLifecycleOwner, Observer {
             binding.forecast = it
 
             val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-            val currentFavCities = sharedPref?.getString("FavouriteCities", null)
+            val currentFavCities = sharedPref?.getString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, null)
 
             if(currentFavCities?.contains("${it.city.name}, ${it.city.country}") == true){
                 binding.addFavourite.setBackgroundResource(R.drawable.ic_added_fav)
-                binding.addFavourite.contentDescription = "FAVOURITES"
+                binding.addFavourite.contentDescription = CONTENT_DESCRIPTION_ADD_FAVOURITE
             } else {
                 binding.addFavourite.setBackgroundResource(R.drawable.ic_add_fav)
-                binding.addFavourite.contentDescription = ""
+                binding.addFavourite.contentDescription = EMPTY_STRING
             }
         })
 
         binding.addFavourite.setOnClickListener {
-            if(it.contentDescription.toString().equals("FAVOURITES", ignoreCase = true)){
+            if(it.contentDescription.toString().equals(CONTENT_DESCRIPTION_ADD_FAVOURITE, ignoreCase = true)){
                 val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-                val currentFavCities = sharedPref?.getString("FavouriteCities", null)
+                val currentFavCities = sharedPref?.getString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, null)
                 val cityName = binding.location.text.toString()
 
                 with(sharedPref?.edit()) {
 
                     if(currentFavCities?.contains(binding.location.text) == true){
                         if(currentFavCities.equals(cityName, ignoreCase = true)){
-                            this?.remove("FavouriteCities")
+                            this?.remove(SHARED_PREFERENCE_FAV_CITY_KEY_NAME)
                             this?.apply()
                         } else {
-                            var removedString = currentFavCities.replace(":$cityName", "")
+                            var removedString = currentFavCities.replace(":$cityName", EMPTY_STRING)
 
                             if(removedString.equals(currentFavCities, true))
-                                removedString = currentFavCities.replace("$cityName:", "")
-                            this?.putString("FavouriteCities", removedString)
+                                removedString = currentFavCities.replace("$cityName:", EMPTY_STRING)
+                            this?.putString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, removedString)
                             this?.apply()
                         }
                     }
                 }
 
                 it.setBackgroundResource(R.drawable.ic_add_fav)
-                it.contentDescription = ""
+                it.contentDescription = EMPTY_STRING
             } else {
                 val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-                val currentFavCities = sharedPref?.getString("FavouriteCities", null)
+                val currentFavCities = sharedPref?.getString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, null)
 
                 with(sharedPref?.edit()) {
 
                     if(currentFavCities.isNullOrEmpty())
-                        this?.putString("FavouriteCities", "${binding.location.text}")
+                        this?.putString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, "${binding.location.text}")
                     else
-                        this?.putString("FavouriteCities", "$currentFavCities:${binding.location.text}")
+                        this?.putString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, "$currentFavCities:${binding.location.text}")
                     this?.apply()
                 }
 
                 it.setBackgroundResource(R.drawable.ic_added_fav)
-                it.contentDescription = "FAVOURITES"
+                it.contentDescription = CONTENT_DESCRIPTION_ADD_FAVOURITE
             }
         }
 
@@ -115,11 +117,11 @@ class CityWeatherFragment: Fragment() {
     }
 
     fun loadWeatherForCityName(cityName: String) {
-        binding.searchCity.setText("")
+        binding.searchCity.setText(EMPTY_STRING)
         model.getForecastByCityName(cityName)
     }
 
-    fun findWeatherForCityName(cityName: String) {
+    private fun findWeatherForCityName(cityName: String) {
         model.getForecastByCityName(cityName)
     }
 }
