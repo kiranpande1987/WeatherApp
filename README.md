@@ -1,6 +1,13 @@
 # WeatherApp
 It is an Android App to search weather by city name.
 
+### Features
+1. Search weather details by city name.
+2. Updated weather for city.
+3. Add City name into favourites.
+4. Forecast for next five days.
+5. Weather details like temperature, pressure, wind, sunrise, sunset etc
+
 ### Installation
 1. Clone project into Android Studio from "https://github.com/kiranpande1987/WeatherApp.git".
 2. Build project
@@ -12,13 +19,6 @@ It is an Android App to search weather by city name.
 
 ### UI Design reference
 [UI Design](https://codecanyon.net/item/simple-weather-50/12389495?_ga=2.126014733.1279098895.1632982909-1720886224.1632982909)
-
-### Features
-1. Search weather details by city name.
-2. Updated weather for city.
-3. Add City name into favourites.
-4. Forecast for next five days.
-5. Weather details like temperature, pressure, wind, sunrise, sunset etc
 
 ### Screenshots
 
