@@ -36,11 +36,15 @@ class CityWeatherFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCityWeatherBinding.inflate(inflater)
-
         binding.lifecycleOwner = this
-
         model = CityWeatherViewModel()
+        addObserver()
+        addListener()
 
+        return binding.root
+    }
+
+    private fun addObserver(){
         model.status.observe(viewLifecycleOwner, Observer {
             binding.apiStatus = it
             if (it == ApiStatus.ERROR) Toast.makeText(
@@ -53,13 +57,10 @@ class CityWeatherFragment: Fragment() {
                 alertDialog.setTitle(R.string.no_internet_title)
                 alertDialog.setCancelable(false)
                 alertDialog.setMessage(resources.getString(R.string.no_internet_message))
-                alertDialog.setButton(
-                    AlertDialog.BUTTON_NEUTRAL, resources.getString(R.string.exit)
-                )
-                {
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, resources.getString(R.string.exit)) {
                         dialog, _ ->
-                            dialog.dismiss()
-                            activity?.finishAndRemoveTask()
+                    dialog.dismiss()
+                    activity?.finishAndRemoveTask()
                 }
                 alertDialog.show()
             }
@@ -79,7 +80,9 @@ class CityWeatherFragment: Fragment() {
                 binding.addFavourite.contentDescription = EMPTY_STRING
             }
         })
+    }
 
+    private fun addListener(){
         binding.addFavourite.setOnClickListener {
             if(it.contentDescription.toString().equals(
                     CONTENT_DESCRIPTION_ADD_FAVOURITE,
@@ -149,8 +152,6 @@ class CityWeatherFragment: Fragment() {
             kb.hideSoftInputFromWindow(binding.searchCity.windowToken, 0)
             return@setOnEditorActionListener true
         }
-
-        return binding.root
     }
 
     fun loadWeatherForCityName(cityName: String) {
