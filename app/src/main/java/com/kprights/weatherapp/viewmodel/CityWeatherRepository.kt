@@ -1,9 +1,12 @@
 package com.kprights.weatherapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.kprights.weatherapp.model.forecast.Base
 import com.kprights.weatherapp.model.result.Root
 import kotlinx.coroutines.*
+import retrofit2.HttpException
+import java.net.UnknownHostException
 
 /**
  * Copyright (c) 2021 for KPrights
@@ -13,7 +16,7 @@ import kotlinx.coroutines.*
  * Time : 12:58 AM
  */
 
-enum class ApiStatus { LOADING, ERROR, DONE }
+enum class ApiStatus { NO_INTERNET, LOADING, ERROR, DONE }
 
 class CityWeatherRepository(
         private val remoteDataSource: IDataSource,
@@ -70,6 +73,10 @@ class CityWeatherRepository(
         try {
             status.postValue(ApiStatus.LOADING)
             return remoteDataSource.getForecastForFiveDaysByCityFromRemote(cityName)
+        } catch (e: UnknownHostException){
+            status.postValue(ApiStatus.NO_INTERNET)
+        } catch (e: HttpException){
+            status.postValue(ApiStatus.ERROR)
         } catch (e: Exception) {
             status.postValue(ApiStatus.ERROR)
         }

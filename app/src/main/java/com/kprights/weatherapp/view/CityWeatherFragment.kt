@@ -1,5 +1,6 @@
 package com.kprights.weatherapp.view
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.kprights.weatherapp.databinding.FragmentCityWeatherBinding
 import com.kprights.weatherapp.viewmodel.ApiStatus
 import com.kprights.weatherapp.viewmodel.CityWeatherViewModel
 
+
 /**
  * Copyright (c) 2021 for KPrights
  *
@@ -30,8 +32,10 @@ class CityWeatherFragment: Fragment() {
     lateinit var model: CityWeatherViewModel
     lateinit var binding: FragmentCityWeatherBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentCityWeatherBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
@@ -40,7 +44,26 @@ class CityWeatherFragment: Fragment() {
 
         model.status.observe(viewLifecycleOwner, Observer {
             binding.apiStatus = it
-            if(it == ApiStatus.ERROR) Toast.makeText(context, R.string.no_city_found, Toast.LENGTH_SHORT).show()
+            if (it == ApiStatus.ERROR) Toast.makeText(
+                context,
+                R.string.no_city_found,
+                Toast.LENGTH_SHORT
+            ).show()
+            if (it == ApiStatus.NO_INTERNET) {
+                val alertDialog = AlertDialog.Builder(context).create()
+                alertDialog.setTitle("No Internet")
+                alertDialog.setCancelable(false)
+                alertDialog.setMessage("Please, check your network connection.")
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_NEUTRAL, "OK"
+                )
+                {
+                        dialog, _ ->
+                            dialog.dismiss()
+                            activity?.finish()
+                }
+                alertDialog.show()
+            }
         })
 
         model.base.observe(viewLifecycleOwner, Observer {
@@ -49,7 +72,7 @@ class CityWeatherFragment: Fragment() {
             val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
             val currentFavCities = sharedPref?.getString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, null)
 
-            if(currentFavCities?.contains("${it.city.name}, ${it.city.country}") == true){
+            if (currentFavCities?.contains("${it.city.name}, ${it.city.country}") == true) {
                 binding.addFavourite.setBackgroundResource(R.drawable.ic_added_fav)
                 binding.addFavourite.contentDescription = CONTENT_DESCRIPTION_ADD_FAVOURITE
             } else {
@@ -59,9 +82,15 @@ class CityWeatherFragment: Fragment() {
         })
 
         binding.addFavourite.setOnClickListener {
-            if(it.contentDescription.toString().equals(CONTENT_DESCRIPTION_ADD_FAVOURITE, ignoreCase = true)){
+            if(it.contentDescription.toString().equals(
+                    CONTENT_DESCRIPTION_ADD_FAVOURITE,
+                    ignoreCase = true
+                )){
                 val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-                val currentFavCities = sharedPref?.getString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, null)
+                val currentFavCities = sharedPref?.getString(
+                    SHARED_PREFERENCE_FAV_CITY_KEY_NAME,
+                    null
+                )
                 val cityName = binding.location.text.toString()
 
                 with(sharedPref?.edit()) {
@@ -85,14 +114,23 @@ class CityWeatherFragment: Fragment() {
                 it.contentDescription = EMPTY_STRING
             } else {
                 val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-                val currentFavCities = sharedPref?.getString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, null)
+                val currentFavCities = sharedPref?.getString(
+                    SHARED_PREFERENCE_FAV_CITY_KEY_NAME,
+                    null
+                )
 
                 with(sharedPref?.edit()) {
 
                     if(currentFavCities.isNullOrEmpty())
-                        this?.putString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, "${binding.location.text}")
+                        this?.putString(
+                            SHARED_PREFERENCE_FAV_CITY_KEY_NAME,
+                            "${binding.location.text}"
+                        )
                     else
-                        this?.putString(SHARED_PREFERENCE_FAV_CITY_KEY_NAME, "$currentFavCities:${binding.location.text}")
+                        this?.putString(
+                            SHARED_PREFERENCE_FAV_CITY_KEY_NAME,
+                            "$currentFavCities:${binding.location.text}"
+                        )
                     this?.apply()
                 }
 
@@ -114,6 +152,10 @@ class CityWeatherFragment: Fragment() {
         }
 
         return binding.root
+    }
+
+    fun finishApp(){
+        activity?.finish()
     }
 
     fun loadWeatherForCityName(cityName: String) {

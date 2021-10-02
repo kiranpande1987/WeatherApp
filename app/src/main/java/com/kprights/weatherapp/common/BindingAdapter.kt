@@ -1,5 +1,9 @@
 package com.kprights.weatherapp.common
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
@@ -43,11 +47,12 @@ fun bindStatus(statusImageView: ImageView, status: ApiStatus?) {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
-
         ApiStatus.ERROR -> {
             statusImageView.visibility = View.GONE
         }
-
+        ApiStatus.NO_INTERNET -> {
+            statusImageView.visibility = View.GONE
+        }
         ApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
