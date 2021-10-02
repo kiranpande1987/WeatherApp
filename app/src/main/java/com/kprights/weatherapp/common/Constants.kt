@@ -9,6 +9,7 @@ package com.kprights.weatherapp.common
  * Time : 8:10 PM
  */
 
+const val DEFAULT_CITY = "London"
 const val SHARED_PREFERENCE_FAV_CITY_KEY_NAME = "FavouriteCities"
 const val CONTENT_DESCRIPTION_ADD_FAVOURITE = "FAVOURITES"
 const val EMPTY_STRING = ""

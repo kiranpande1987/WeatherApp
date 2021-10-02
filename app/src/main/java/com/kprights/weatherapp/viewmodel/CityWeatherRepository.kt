@@ -2,6 +2,7 @@ package com.kprights.weatherapp.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.kprights.weatherapp.common.DEFAULT_CITY
 import com.kprights.weatherapp.model.forecast.Base
 import com.kprights.weatherapp.model.result.Root
 import kotlinx.coroutines.*
@@ -31,7 +32,7 @@ class CityWeatherRepository(
     val status: MutableLiveData<ApiStatus> = MutableLiveData<ApiStatus>()
 
     init {
-        updateForecastDataFromRemoteDataSource("London")
+        updateForecastDataFromRemoteDataSource(DEFAULT_CITY)
     }
 
     fun updateForecastDataFromRemoteDataSource(cityName: String) {

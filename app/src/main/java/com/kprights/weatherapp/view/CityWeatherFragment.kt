@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kprights.weatherapp.R
 import com.kprights.weatherapp.common.CONTENT_DESCRIPTION_ADD_FAVOURITE
+import com.kprights.weatherapp.common.DEFAULT_CITY
 import com.kprights.weatherapp.common.EMPTY_STRING
 import com.kprights.weatherapp.common.SHARED_PREFERENCE_FAV_CITY_KEY_NAME
 import com.kprights.weatherapp.databinding.FragmentCityWeatherBinding
@@ -61,6 +62,13 @@ class CityWeatherFragment: Fragment() {
                         dialog, _ ->
                     dialog.dismiss()
                     activity?.finishAndRemoveTask()
+                }
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.search)) {
+                        dialog, _ ->
+                    dialog.dismiss()
+                    var searchString = binding.searchCity.text.toString()
+                    if(searchString.isEmpty()) searchString = DEFAULT_CITY
+                    findWeatherForCityName(searchString)
                 }
                 alertDialog.show()
             }
