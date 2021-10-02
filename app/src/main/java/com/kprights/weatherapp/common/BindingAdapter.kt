@@ -33,7 +33,6 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<String>) {
 @BindingAdapter("showImage")
 fun showImage(imageViewForNewsFeed: ImageView, icon: String?) {
     val imageUrl = "http://openweathermap.org/img/wn/${icon}@4x.png"
-    Log.e("IMAGGEE", imageUrl)
 
     imageUrl.let {
         val imgUri = imageUrl.toUri().buildUpon().scheme("http").build()

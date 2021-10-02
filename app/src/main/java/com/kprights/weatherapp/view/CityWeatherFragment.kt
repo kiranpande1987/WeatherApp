@@ -47,30 +47,19 @@ class CityWeatherFragment: Fragment() {
             if(it == ApiStatus.ERROR) Toast.makeText(context, "No City Found", Toast.LENGTH_SHORT).show()
         })
 
-        model.root.observe(viewLifecycleOwner, Observer {
-            Log.e("CITTYYY 1", "OBserver called")
-            Log.e("CITTYYY 2", "${it.toString()}")
-
-            binding.cityWeather = it
+        model.base.observe(viewLifecycleOwner, Observer {
+            binding.forecast = it
 
             val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
             val currentFavCities = sharedPref?.getString("FavouriteCities", null)
 
-            if(currentFavCities?.contains("${it.name}, ${it.sys.country}") == true){
+            if(currentFavCities?.contains("${it.city.name}, ${it.city.country}") == true){
                 binding.addFavourite.setBackgroundResource(R.drawable.ic_added_fav)
                 binding.addFavourite.contentDescription = "FAVOURITES"
             } else {
                 binding.addFavourite.setBackgroundResource(R.drawable.ic_add_fav)
                 binding.addFavourite.contentDescription = ""
             }
-        })
-
-        model.base.observe(viewLifecycleOwner, Observer {
-            Log.e("CITTYYY 1", "OBserver called")
-            Log.e("CITTYYY 2", "${it.toString()}")
-
-            binding.forecast = it
-
         })
 
         binding.addFavourite.setOnClickListener {

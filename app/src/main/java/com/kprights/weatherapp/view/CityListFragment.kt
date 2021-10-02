@@ -44,11 +44,6 @@ class CityListFragment: Fragment() {
 
         val model = CityWeatherViewModel(cityWeatherRepository)
 
-        model.root.observe(viewLifecycleOwner, Observer {
-            Log.e("CITTYYY 1", "OBserver called")
-            Log.e("CITTYYY 2", "${it.toString()}")
-        })
-
         binding.recyclerViewForCityList.adapter = CityListAdapter(CityListAdapter.OnClickListener {
 
             model.getWeatherByCityName(it)
