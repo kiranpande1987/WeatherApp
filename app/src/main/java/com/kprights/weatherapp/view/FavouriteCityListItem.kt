@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kprights.weatherapp.databinding.FavouriteCityListItemBinding
-import com.kprights.weatherapp.viewmodel.CityWeatherRepository
 import com.kprights.weatherapp.viewmodel.CityWeatherViewModel
-
 
 /**
  * Copyright (c) 2021 for KPrights
@@ -18,8 +16,6 @@ import com.kprights.weatherapp.viewmodel.CityWeatherViewModel
 
 class FavouriteCityListItem(private val binding: FavouriteCityListItemBinding) : RecyclerView.ViewHolder(binding.root)
 {
-
-
     fun bind(item: String, onClickListener: FavouriteCityListAdapter.OnClickListener) {
         binding.cityName = item
         binding.onClickListener = onClickListener

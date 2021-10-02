@@ -1,12 +1,9 @@
 package com.kprights.weatherapp.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kprights.weatherapp.model.forecast.Base
 import com.kprights.weatherapp.model.result.Root
 import kotlinx.coroutines.*
-
 
 /**
  * Copyright (c) 2021 for KPrights

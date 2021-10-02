@@ -7,7 +7,6 @@ import com.kprights.weatherapp.model.forecast.Base
 import com.kprights.weatherapp.model.result.Root
 import kotlinx.coroutines.Dispatchers
 
-
 /**
  * Copyright (c) 2021 for KPrights
  *

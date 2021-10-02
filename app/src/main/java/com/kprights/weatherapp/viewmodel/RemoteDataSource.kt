@@ -5,7 +5,6 @@ import com.kprights.weatherapp.common.WebService
 import com.kprights.weatherapp.model.forecast.Base
 import com.kprights.weatherapp.model.result.Root
 
-
 /**
  * Copyright (c) 2021 for KPrights
  *

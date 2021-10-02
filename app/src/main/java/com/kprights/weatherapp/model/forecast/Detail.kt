@@ -3,7 +3,6 @@ package com.kprights.weatherapp.model.forecast
 import com.google.gson.annotations.SerializedName
 
 data class Detail(
-
 		@SerializedName("dt") var dt : Long = 0L,
 		@SerializedName("main") var main : Main = Main(),
 		@SerializedName("weather") var weather : List<Weather> = emptyList(),

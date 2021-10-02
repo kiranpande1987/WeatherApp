@@ -2,24 +2,18 @@ package com.kprights.weatherapp.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kprights.weatherapp.R
 import com.kprights.weatherapp.databinding.FragmentCityWeatherBinding
 import com.kprights.weatherapp.viewmodel.ApiStatus
-import com.kprights.weatherapp.viewmodel.CityWeatherRepository
 import com.kprights.weatherapp.viewmodel.CityWeatherViewModel
-import com.kprights.weatherapp.viewmodel.RemoteDataSource
-import kotlinx.coroutines.Dispatchers
-
 
 /**
  * Copyright (c) 2021 for KPrights

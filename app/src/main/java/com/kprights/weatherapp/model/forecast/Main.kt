@@ -3,7 +3,6 @@ package com.kprights.weatherapp.model.forecast
 import com.google.gson.annotations.SerializedName
 
 data class Main (
-
 		@SerializedName("temp") var temp : Double = 0.0,
 		@SerializedName("feels_like") var feels_like : Double = 0.0,
 		@SerializedName("temp_min") var temp_min : Double = 0.0,

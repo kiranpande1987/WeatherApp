@@ -2,21 +2,16 @@ package com.kprights.weatherapp
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.kprights.weatherapp.view.CityWeatherFragment
 import com.kprights.weatherapp.view.FavouriteCityListAdapter
-
 
 class MainActivity : AppCompatActivity() {
     var drawerLayout: DrawerLayout? = null

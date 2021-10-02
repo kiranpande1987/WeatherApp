@@ -3,7 +3,6 @@ package com.kprights.weatherapp.model.result
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 
-
 /**
  * Copyright (c) 2021 for KPrights
  *
