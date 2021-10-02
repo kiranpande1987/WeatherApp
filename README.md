@@ -3,4 +3,5 @@
 
 [MainActivity](https://pages.github.com/).
 
-![MainScreen](/screenshots/London_Weather.png)
+![MainScreen](/screenshots/London_Weather.png =250x500)
+
