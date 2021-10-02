@@ -16,8 +16,8 @@ It is an Android App to search weather by city name.
 
 ### Weather API
 Host: [OpenWeatherMap](https://openweathermap.org/)
-1. #### Forecast By City Name [Forecast](https://openweathermap.org/forecast5#name5)
-2. #### Weather By City Name [Weather](https://openweathermap.org/current#name)
+1. #### [Forecast](https://openweathermap.org/forecast5#name5) By City Name
+2. #### [Weather](https://openweathermap.org/current#name) By City Name
 
 ### UI Design reference
 [UI Design](https://codecanyon.net/item/simple-weather-50/12389495?_ga=2.126014733.1279098895.1632982909-1720886224.1632982909)
