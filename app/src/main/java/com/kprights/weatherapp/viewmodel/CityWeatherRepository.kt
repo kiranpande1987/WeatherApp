@@ -31,27 +31,29 @@ class CityWeatherRepository(
     val status: MutableLiveData<ApiStatus> = MutableLiveData<ApiStatus>()
 
     init {
-        updateDataFromRemoteDataSource("London")
+        updateForecastDataFromRemoteDataSource("London")
     }
 
-    // Fetch Latest Data from Web.
-    // if Success, Delete Data from Local Database.
-    // Save Latest Data to Local Database.
-    // If Error, Throw Exception.
-    fun updateDataFromRemoteDataSource(cityName: String) {
+    fun updateForecastDataFromRemoteDataSource(cityName: String) {
         scope.launch(ioDispatcher) {
 
-            val root = fetchDataFromRemote(cityName)
             val base = fetchForecastDataFromRemote(cityName)
-
-            root?.let {
-                status.postValue(ApiStatus.DONE)
-                roots.postValue(root)
-            }
 
             base?.let {
                 status.postValue(ApiStatus.DONE)
                 bases.postValue(base)
+            }
+        }
+    }
+
+    fun updateWeatherDataFromRemoteDataSource(cityName: String) {
+        scope.launch(ioDispatcher) {
+
+            val root = fetchDataFromRemote(cityName)
+
+            root?.let {
+                status.postValue(ApiStatus.DONE)
+                roots.postValue(root)
             }
         }
     }

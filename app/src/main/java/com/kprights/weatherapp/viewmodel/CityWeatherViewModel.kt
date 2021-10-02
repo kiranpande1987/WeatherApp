@@ -29,6 +29,10 @@ class CityWeatherViewModel(
     }
 
     fun getWeatherByCityName(cityName: String) {
-        cityWeatherRepository.updateDataFromRemoteDataSource(cityName)
+        cityWeatherRepository.updateWeatherDataFromRemoteDataSource(cityName)
+    }
+
+    fun getForecastByCityName(cityName: String) {
+        cityWeatherRepository.updateForecastDataFromRemoteDataSource(cityName)
     }
 }

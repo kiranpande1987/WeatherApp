@@ -86,8 +86,7 @@ class CityWeatherFragment: Fragment() {
                             this?.remove("FavouriteCities")
                             this?.apply()
                         } else {
-                            var removedString: String? = null
-                            removedString = currentFavCities.replace(":$cityName", "")
+                            var removedString = currentFavCities.replace(":$cityName", "")
 
                             if(removedString.equals(currentFavCities, true))
                                 removedString = currentFavCities.replace("$cityName:", "")
@@ -134,10 +133,10 @@ class CityWeatherFragment: Fragment() {
 
     fun loadWeatherForCityName(cityName: String) {
         binding.searchCity.setText("")
-        model.getWeatherByCityName(cityName)
+        model.getForecastByCityName(cityName)
     }
 
     fun findWeatherForCityName(cityName: String) {
-        model.getWeatherByCityName(cityName)
+        model.getForecastByCityName(cityName)
     }
 }

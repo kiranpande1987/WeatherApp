@@ -46,7 +46,7 @@
             android:layout_marginTop="8dp"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:text="@{@string/location(cityWeather.name,cityWeather.sys.country)}"
+            android:text="@{@string/location(forecast.city.name,forecast.city.country)}"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:showImage="@{cityWeather.weather.get(0).icon}"
+            app:showImage="@{forecast.list.get(0).weather.get(0).icon}"
             app:layout_constraintTop_toBottomOf="@id/location"
             app:srcCompat="@android:drawable/stat_notify_error" />
 
@@ -84,7 +84,7 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="@{@string/formatter_time_sunrise(cityWeather.sys.sunrise * 1000)}"
+            android:text="@{@string/formatter_time_sunrise(forecast.city.sunrise * 1000)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/location" />
 
@@ -98,7 +98,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:layout_marginEnd="8dp"
-            android:text="@{@string/formatter_time_sunset(cityWeather.sys.sunset * 1000)}"
+            android:text="@{@string/formatter_time_sunset(forecast.city.sunset * 1000)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/location" />
 
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:text="@{cityWeather.weather.get(0).description.toUpperCase()}"
+            android:text="@{forecast.list.get(0).weather.get(0).description.toUpperCase()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center"
@@ -123,7 +123,7 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="@{@string/temperature(cityWeather.main.temp)}"
+            android:text="@{@string/temperature(forecast.list.get(0).main.temp)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/description" />
@@ -146,7 +146,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="@{@string/pressure(cityWeather.main.pressure)}"/>
+                android:text="@{@string/pressure(forecast.list.get(0).main.pressure)}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -155,7 +155,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="@{@string/humidity(cityWeather.main.humidity)}"/>
+                android:text="@{@string/humidity(forecast.list.get(0).main.humidity)}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -164,7 +164,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="@{@string/wind(cityWeather.wind.speed)}"/>
+                android:text="@{@string/wind(forecast.list.get(0).wind.speed)}"/>
 
         </LinearLayout>
 
@@ -204,7 +204,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="@{@string/forecast_format(forecast.list.get(0).dt * 1000, forecast.list.get(0).main.temp).toUpperCase()}"/>
+                android:text="@{@string/forecast_format(forecast.list.get(8).dt * 1000, forecast.list.get(0).main.temp).toUpperCase()}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -213,7 +213,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="@{@string/forecast_format(forecast.list.get(8).dt * 1000, forecast.list.get(8).main.temp).toUpperCase()}"/>
+                android:text="@{@string/forecast_format(forecast.list.get(16).dt * 1000, forecast.list.get(8).main.temp).toUpperCase()}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -222,7 +222,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="@{@string/forecast_format(forecast.list.get(16).dt * 1000, forecast.list.get(16).main.temp).toUpperCase()}"/>
+                android:text="@{@string/forecast_format(forecast.list.get(24).dt * 1000, forecast.list.get(16).main.temp).toUpperCase()}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -231,7 +231,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="@{@string/forecast_format(forecast.list.get(24).dt * 1000, forecast.list.get(24).main.temp).toUpperCase()}"/>
+                android:text="@{@string/forecast_format(forecast.list.get(32).dt * 1000, forecast.list.get(24).main.temp).toUpperCase()}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -240,7 +240,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:text="@{@string/forecast_format(forecast.list.get(32).dt * 1000, forecast.list.get(32).main.temp).toUpperCase()}"/>
+                android:text="@{@string/forecast_format(forecast.list.get(39).dt * 1000, forecast.list.get(32).main.temp).toUpperCase()}"/>
 
         </LinearLayout>
 
@@ -253,7 +253,7 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="@{@string/formatter_date(cityWeather.dt * 1000)}"
+            android:text="@{@string/formatter_date(forecast.list.get(0).dt * 1000)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
