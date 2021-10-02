@@ -1,5 +1,11 @@
 # WeatherApp
-## Android App To Search Weather By City Name.
+It is an Android App to search weather by city name.
+
+### Weather API
+[OpenWeatherMap](https://openweathermap.org/)
+
+### UI Design reference
+[UI Design](https://codecanyon.net/item/simple-weather-50/12389495?_ga=2.126014733.1279098895.1632982909-1720886224.1632982909)
 
 ### Features
 1. Search weather details by city name.
