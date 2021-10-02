@@ -19,7 +19,6 @@ import com.kprights.weatherapp.databinding.FragmentCityWeatherBinding
 import com.kprights.weatherapp.viewmodel.ApiStatus
 import com.kprights.weatherapp.viewmodel.CityWeatherViewModel
 
-
 /**
  * Copyright (c) 2021 for KPrights
  *
@@ -51,16 +50,16 @@ class CityWeatherFragment: Fragment() {
             ).show()
             if (it == ApiStatus.NO_INTERNET) {
                 val alertDialog = AlertDialog.Builder(context).create()
-                alertDialog.setTitle("No Internet")
+                alertDialog.setTitle(R.string.no_internet_title)
                 alertDialog.setCancelable(false)
-                alertDialog.setMessage("Please, check your network connection.")
+                alertDialog.setMessage(resources.getString(R.string.no_internet_message))
                 alertDialog.setButton(
-                    AlertDialog.BUTTON_NEUTRAL, "OK"
+                    AlertDialog.BUTTON_NEUTRAL, resources.getString(R.string.exit)
                 )
                 {
                         dialog, _ ->
                             dialog.dismiss()
-                            activity?.finish()
+                            activity?.finishAndRemoveTask()
                 }
                 alertDialog.show()
             }
@@ -152,10 +151,6 @@ class CityWeatherFragment: Fragment() {
         }
 
         return binding.root
-    }
-
-    fun finishApp(){
-        activity?.finish()
     }
 
     fun loadWeatherForCityName(cityName: String) {

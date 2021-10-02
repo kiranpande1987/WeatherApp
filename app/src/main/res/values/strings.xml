@@ -17,4 +17,7 @@
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="no_city_found">No City Found</string>
+    <string name="no_internet_title">No Internet</string>
+    <string name="no_internet_message">Please, check your network connection.</string>
+    <string name="exit">Exit</string>
 </resources>
