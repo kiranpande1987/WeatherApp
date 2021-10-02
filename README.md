@@ -1,6 +1,12 @@
 # WeatherApp
 It is an Android App to search weather by city name.
 
+### Installation
+1. Clone project into Android Studio from "https://github.com/kiranpande1987/WeatherApp.git".
+2. Build project
+3. Run app into emulator/device.
+4. Weather for London city will load by default.
+
 ### Weather API
 [OpenWeatherMap](https://openweathermap.org/)
 
