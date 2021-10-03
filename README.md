@@ -15,8 +15,7 @@ It is an Android App to search weather by city name.
 4. Weather for London city will load by default.
 
 ### Project Structure
-[Root Package](/app/src/main/java/com/kprights/weatherapp)
-
+[Root Package](/app/src/main/java/com/kprights/weatherapp): com.kprights.weatherapp
 1. [Common](/app/src/main/java/com/kprights/weatherapp/common)
 2. [Model](/app/src/main/java/com/kprights/weatherapp/model)
 3. [View](/app/src/main/java/com/kprights/weatherapp/view)
