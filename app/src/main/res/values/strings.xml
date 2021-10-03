@@ -11,6 +11,7 @@
     <string name="formatter_time_sunrise">Sunrise: %1$tH:%1$tM</string>
     <string name="formatter_time_sunset">Sunset: %1$tH:%1$tM</string>
     <string name="forecast_format">%1$ta\n%2$.0f \u2103</string>
+    <string name="forecast_format_landscape">%1$ta : %2$.0f\u2103 - %3$s</string>
     <string name="next_5_days">Next 5 Days</string>
     <string name="favourite_list_item">%1$s\n%2$s</string>
     <string name="no_favourite_cities">No Favourite Cities</string>

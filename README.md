@@ -36,3 +36,8 @@ Host: [OpenWeatherMap](https://openweathermap.org/)
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <img src="/screenshots/Search_City_1.png" width="250" height="500">
 </div>
+
+<img src="/screenshots/Dashboard_Landscape.png" width="500" height="250">
+<br>
+<img src="/screenshots/Favourite_Landscape.png" width="500" height="250">
+
