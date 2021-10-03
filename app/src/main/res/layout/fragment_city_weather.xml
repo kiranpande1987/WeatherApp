@@ -13,6 +13,11 @@
             type="com.kprights.weatherapp.viewmodel.ApiStatus" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +27,7 @@
             android:id="@+id/searchCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textAutoComplete"
+            android:inputType="textAutoComplete|textCapSentences"
             android:imeOptions="actionSearch"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
@@ -250,6 +255,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:text="@{@string/formatter_date(forecast.list.get(0).dt * 1000)}"
+            app:layout_constraintTop_toBottomOf="@id/cityForecast"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -267,4 +273,5 @@
             apiStatus="@{apiStatus}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
