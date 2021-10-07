@@ -8,6 +8,9 @@ It is an Android App to search weather by city name.
 4. Forecast for next five days.
 5. Weather details like temperature, pressure, wind, sunrise, sunset etc
 
+### Play Store
+https://play.google.com/store/apps/details?id=com.kprights.weatherapp
+
 ### Installation
 1. Clone project into Android Studio from "https://github.com/kiranpande1987/WeatherApp.git".
 2. Build project
